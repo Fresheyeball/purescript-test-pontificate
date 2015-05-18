@@ -13,5 +13,8 @@
   "dependencies": {
     "purescript-quickcheck": "~0.5.2",
     "purescript-bifunctors": "~0.3.1"
+  },
+  "devDependencies": {
+    "purescript-debug-foreign": "~0.0.4"
   }
 }

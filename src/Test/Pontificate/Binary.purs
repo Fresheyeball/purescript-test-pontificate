@@ -2,26 +2,38 @@ module Test.Pontificate.Binary where
 
 import Test.QuickCheck
 import Debug.Trace
+import Debug.Spy
 
 type CustomEq a = (a -> a -> Boolean)
 type Binary a = (a -> a -> a)
 
 commutative' :: forall a.
   ( Show a )
-  => CustomEq a -> Binary a -> a -> a -> Result
-commutative' (==) (*) a b = (a * b) == (b * a)
-  <?> "some things are just not commutative bro, when"
-  <> "\n a = " <> show a
-  <> "\n b = " <> show b
-  <> "\n so..."
-  <> "\n a * b = " <> show (a * b)
-  <> "\n but like"
-  <> "\n b * a = " <> show (b * a)
+  => CustomEq a -> Binary a
+  -> a -> a -> a -> Result
+commutative' (==) (*) a b c =
+              -- this shows the same value for a complete test set
+  let   x =  (spy a * b * c)
+  in   (x == (a * c * b))
+    && (x == (b * c * a))
+    && (x == (c * b * a))
+    && (x == (c * a * b))
+    <?> "some things are just not commutative bro, when"
+    <> "\n a = " <> show a
+    <> "\n b = " <> show b
+    <> "\n c = " <> show c
+    <> "\n so..."
+    <> "\n a * b * c = " <> show (a * b * c)
+    <> "\n but like"
+    <> "\n a * c * b = " <> show (a * c * b)
+    <> "\n b * c * a = " <> show (b * c * a)
+    <> "\n c * b * a = " <> show (c * b * a)
+    <> "\n c * a * b = " <> show (c * a * b)
 
 commutative :: forall a.
   ( Eq a
   , Show a )
-  => Binary a -> a -> a -> Result
+  => Binary a -> a -> a -> a -> Result
 commutative = commutative' (==)
 
 associative' :: forall a.

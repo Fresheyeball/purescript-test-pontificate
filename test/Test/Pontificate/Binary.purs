@@ -5,22 +5,15 @@ import Test.QuickCheck
 import Test.Pontificate.Binary
 import Test.Pontificate.Fuzzy
 
-checkCheckAssociative =
-  let
-    checkFuzzyNum = quickCheck <<< associative' ((=~=) :: Number -> Number -> Boolean)
-    checkNotFuzzyNum = quickCheck <<< associative' ((/=~=) :: Number -> Number -> Boolean)
-    checkAssoc = quickCheck <<< associative
-  in do
+checkCheckAssociative = do
     trace "*"
-    checkFuzzyNum (*)
+    quickCheck $ associative' (=~=) ((*) :: Number -> Number -> Number)
     trace "+"
-    checkFuzzyNum (+)
-    trace "-"
-    checkNotFuzzyNum (-)
+    quickCheck $ associative' (=~=) ((+) :: Number -> Number -> Number)
     trace "&&"
-    checkAssoc ((&&) :: Boolean -> Boolean -> Boolean)
+    quickCheck $ associative ((&&) :: Boolean -> Boolean -> Boolean)
     trace "||"
-    checkAssoc ((||) :: Boolean -> Boolean -> Boolean)
+    quickCheck $ associative ((||) :: Boolean -> Boolean -> Boolean)
 
 checkCheckCommutiative = do
   trace "=="
@@ -29,16 +22,16 @@ checkCheckCommutiative = do
   quickCheck $ commutative ((&&) :: Boolean -> Boolean -> Boolean)
   trace "||"
   quickCheck $ commutative ((||) :: Boolean -> Boolean -> Boolean)
-  trace "+"
-  quickCheck $ commutative ((*) :: Number -> Number -> Number)
   trace "*"
-  quickCheck $ commutative ((+) :: Number -> Number -> Number)
-  trace "-"
-  quickCheck $ commutative' (/=) ((-) :: Number -> Number -> Number)
+  quickCheck $ commutative' (=~=) ((*) :: Number -> Number -> Number)
+  trace "+"
+  quickCheck $ commutative' (=~=) ((+) :: Number -> Number -> Number)
 
 checkCheckDistributive = do
   trace "* over +"
   quickCheck $ distributive' (=~=) (*) ((+) :: Number -> Number -> Number)
+  trace "&& over ||"
+  quickCheck $ distributive (&&) ((||) :: Boolean -> Boolean -> Boolean)
 
 checkCheckBinary = do
   checkCheckAssociative

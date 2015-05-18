@@ -35,16 +35,14 @@ checkMonoid' (==) (*) identity' = do
 checkMonoid :: forall a.
   ( Eq a
   , Show a
-  , Arbitrary a
-  , CoArbitrary a )
+  , Arbitrary a, CoArbitrary a )
   => Binary a -> Id a -> QC Unit
 checkMonoid = checkMonoid' (==)
 
 checkMonoidInstance' :: forall a.
   ( Monoid a
   , Show a
-  , Arbitrary a
-  , CoArbitrary a )
+  , Arbitrary a, CoArbitrary a )
   => CustomEq a -> QC Unit
 checkMonoidInstance' (==) = checkMonoid' (==) (<>) mempty
 
@@ -52,16 +50,14 @@ checkMonoidInstance :: forall a.
   ( Monoid a
   , Eq a
   , Show a
-  , Arbitrary a
-  , CoArbitrary a )
+  , Arbitrary a, CoArbitrary a )
   => a -> QC Unit
 checkMonoidInstance _ = checkMonoid'
   ((==) :: CustomEq a) (<>) mempty
 
 checkCommutativeMonoid' :: forall a.
   ( Show a
-  , Arbitrary a
-  , CoArbitrary a )
+  , Arbitrary a, CoArbitrary a )
   => CustomEq a -> Binary a -> Id a -> QC Unit
 checkCommutativeMonoid' (==) (+) identity = do
   trace "CommutativeMonoid <= Monoid"
@@ -72,7 +68,6 @@ checkCommutativeMonoid' (==) (+) identity = do
 checkCommutativeMonoid :: forall a.
   ( Eq a
   , Show a
-  , Arbitrary a
-  , CoArbitrary a )
+  , Arbitrary a, CoArbitrary a )
   => Binary a -> Id a -> QC Unit
 checkCommutativeMonoid = checkCommutativeMonoid' (==)
