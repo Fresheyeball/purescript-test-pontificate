@@ -1,9 +1,9 @@
-module Test.Magma where
+module Test.Pontificate.Magma where
 
 import Debug.Trace
 import Data.Monoid
 import Test.QuickCheck
-import Test.Binary
+import Test.Pontificate.Binary
 
 type Id a = a
 

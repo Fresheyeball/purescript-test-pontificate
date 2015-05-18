@@ -1,4 +1,4 @@
-module Test.Binary where
+module Test.Pontificate.Binary where
 
 import Test.QuickCheck
 import Debug.Trace
@@ -40,7 +40,7 @@ associative :: forall a.
   ( Show a
   , Eq a )
   => Binary a -> a -> a -> a -> Result
-associative = associative' (==)
+associative = associative' ((==) :: CustomEq a)
 
 distributive' :: forall a.
   ( Show a )

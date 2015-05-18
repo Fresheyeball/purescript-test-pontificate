@@ -1,6 +1,6 @@
-module Test.Monad where
+module Test.Pontificate.Monad where
 
-import Test.Binary
+import Test.Pontificate.Binary
 import Test.QuickCheck
 import Debug.Trace
 

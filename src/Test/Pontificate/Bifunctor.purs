@@ -1,4 +1,4 @@
-module Test.Bifunctor where
+module Test.Pontificate.Bifunctor where
 
 import Data.Bifunctor
 import Test.QuickCheck

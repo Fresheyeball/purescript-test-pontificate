@@ -1,4 +1,4 @@
-module Test.Fuzzy where
+module Test.Pontificate.Fuzzy where
 
 infix 4 =~=
 infix 4 /=~=
