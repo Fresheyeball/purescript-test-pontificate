@@ -1,0 +1,17 @@
+{
+  "name": "purescript-test-pontificate",
+  "version": "1.0.0",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-quickcheck": "~0.5.2",
+    "purescript-bifunctors": "~0.3.1"
+  }
+}
