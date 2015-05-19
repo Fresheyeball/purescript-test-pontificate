@@ -11,4 +11,4 @@ checkCheckApply = do
     ((<*>) :: Ap Maybe (String -> String) (String -> String) )
     (<*>) (<*>)
   trace "Apply [Number]"
-  checkApplyInstance [0] [0]
+  checkApplyInstance [0] ["foo"] [false]

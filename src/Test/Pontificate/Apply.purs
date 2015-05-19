@@ -83,5 +83,5 @@ checkApplyInstance :: forall f a b c.
   , Arbitrary (f c)
   , Show (f a), Show (f b), Show (f c)
   , Eq (f c) )
-  => f a -> f b -> QC Unit
-checkApplyInstance = checkApplyInstance' ((==) :: CustomEq (f c))
+  => f c -> f a -> f b -> QC Unit
+checkApplyInstance _ = checkApplyInstance' ((==) :: CustomEq (f c))

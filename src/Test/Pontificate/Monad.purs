@@ -59,7 +59,9 @@ checkMonad'
   trace "Monad <= Bind"
   checkBind' (====) bindab bindbc bindac
 
+  trace "Monad leftIdentity"
   quickCheck leftIdentity
+  trace "Monad rightIdentity"
   quickCheck rightIdentity
 
   where
