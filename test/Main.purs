@@ -12,6 +12,7 @@ import Test.Test.Pontificate.Monad
 
 main = do
   checkCheckBinary
+
   checkCheckSemigroup
   checkCheckMonoid
   checkCheckSemiring
@@ -21,3 +22,4 @@ main = do
   checkCheckApplicative
   checkCheckBind
   checkCheckMonad
+  
