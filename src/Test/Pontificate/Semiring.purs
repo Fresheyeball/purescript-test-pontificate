@@ -3,6 +3,7 @@ module Test.Pontificate.Semiring where
 import Debug.Trace
 import Data.Monoid
 import Test.QuickCheck
+import Test.Pontificate.Monoid(Id)
 import Test.Pontificate.Binary
 import Test.Pontificate.Monoid
 
@@ -39,7 +40,7 @@ checkSemiring :: forall a.
   , CoArbitrary a
   , Show a
   , Eq a )
-  => Binary a -> a -> Binary a -> a -> QC Unit
+  => Binary a -> Id a -> Binary a -> Id a -> QC Unit
 checkSemiring = checkSemiring' ((==) :: CustomEq a)
 
 checkSemiringInstance' :: forall a.
